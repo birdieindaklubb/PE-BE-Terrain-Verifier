@@ -1,0 +1,4 @@
+# x y z value
+# Minimal Nether smoke observation.  The bottom bedrock shell is terrain,
+# not a structure or population feature.
+0 0 0 1

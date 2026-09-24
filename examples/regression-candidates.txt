@@ -1,0 +1,7 @@
+# Mixed signed/unsigned 32-bit candidates used by the CLI filter regressions.
+0
+1
+-1
+1788183909
+1788587961
+2714024796

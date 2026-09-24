@@ -1,0 +1,3 @@
+# PE 0.6.1 seed 1788183909, first native surface column.
+0 70 0 1
+0 71 0 0

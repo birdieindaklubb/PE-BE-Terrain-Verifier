@@ -1,0 +1,14 @@
+# PE 0.9.0 Infinite, unsigned seed 1788587961.
+# Final terrain-only stage (surface replacement followed by caves).
+224 38 -544 0
+224 19 -542 0
+228 35 -536 1
+230 5 -540 1
+232 34 -534 1
+235 40 -530 1
+239 10 -529 1
+239 60 -529 1
+225 50 -540 1
+230 20 -535 1
+238 30 -532 1
+229 70 -538 0

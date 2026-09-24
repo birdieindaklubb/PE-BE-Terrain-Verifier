@@ -1,0 +1,14 @@
+# PE 0.6.1 seed 1788183909. Dry natural-surface boundaries sampled from
+# independent finite-world chunks; values are exact air/non-air observations.
+0 70 0 1
+0 71 0 0
+48 63 68 1
+48 64 68 0
+86 63 160 1
+86 64 160 0
+128 66 128 1
+128 67 128 0
+199 63 228 1
+199 64 228 0
+224 66 48 1
+224 67 48 0

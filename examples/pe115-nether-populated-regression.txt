@@ -1,0 +1,13 @@
+# PE 1.1.5.0 canonical populated-stage regression.
+# These glowstone blocks enter chunk (-3, 5) from an adjacent source chunk;
+# populating only the observed chunk leaves every listed position as air.
+-44 85 91 1
+-44 86 91 1
+-43 85 89 1
+-43 83 90 1
+-43 86 90 1
+-42 82 90 1
+-42 84 91 1
+-41 83 92 1
+-41 85 93 1
+-40 85 92 1

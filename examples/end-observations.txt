@@ -1,0 +1,5 @@
+# x y z value
+# Minimal End smoke observations.  These do not sample a pillar, portal,
+# city, chorus plant, gateway, or arrival platform.
+0 127 0 0
+0 0 0 0

@@ -1,0 +1,6 @@
+# x y z value
+# 0 means exact air.  1 means a non-air block made by the terrain stage.
+# Record only unmodified base terrain: no trees, ores, plants, structures,
+# player blocks, or other population writes.
+0 127 0 0
+0 0 0 1

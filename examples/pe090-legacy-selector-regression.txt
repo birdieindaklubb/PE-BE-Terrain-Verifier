@@ -1,0 +1,3 @@
+# PE 0.9.0 Legacy selector regression.
+# The Infinite source is air at this same seed and coordinate.
+-128 22 -128 1
