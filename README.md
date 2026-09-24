@@ -40,12 +40,24 @@ Do not record blocks altered by excluded population or runtime systems.
 ## Build
 
 The release executable is statically linked and has no game-file, companion
-DLL, network, or third-party dependency. This checkout compiles only the
-needed observable terrain translation units from the adjacent
-`../mcpe-worldgen` source tree directly into the executable; unrelated loot,
-village, mineshaft, and monster-room implementations are not part of the
-verifier target. `MCPE_WORLDGEN_SOURCE_DIR` may select the same source tree at
-a different location.
+DLL, network, or downloaded dependency. A clean clone contains a minimal
+snapshot of the needed observable terrain code under
+`third_party/pe-be-worldgen-lib` and compiles it directly into the executable.
+Unrelated loot, village, mineshaft, and monster-room implementations are not
+part of the snapshot or verifier target.
+
+`MCPE_WORLDGEN_SOURCE_DIR` may select a complete `PE-BE-Worldgen-Lib`
+checkout instead. This keeps the standalone and external-library paths on the
+same source interface while the main library is still changing:
+
+```powershell
+cmake -S . -B build-external -DCMAKE_BUILD_TYPE=Release `
+  -DMCPE_WORLDGEN_SOURCE_DIR="C:\path\to\PE-BE-Worldgen-Lib"
+```
+
+Maintainers can also configure `MCPE_WORLDGEN_REFERENCE_DIR` and build the
+`mcpe_worldgen_snapshot_parity` target. It byte-compares every vendored file
+with that checkout and fails on drift.
 
 The PE 0.6.1 verifier uses a terrain-only backend, so its population, falling
 blocks, plants, drops, mobs, ores, trees, springs, and `Level` implementation

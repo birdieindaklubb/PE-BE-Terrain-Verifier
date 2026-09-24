@@ -10,16 +10,40 @@ if(MSVC)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 endif()
 
+set(MCPE_WORLDGEN_BUNDLED_DIR
+    "${CMAKE_CURRENT_SOURCE_DIR}/third_party/pe-be-worldgen-lib")
 set(MCPE_WORLDGEN_SOURCE_DIR
-    "${CMAKE_CURRENT_SOURCE_DIR}/../mcpe-worldgen"
+    "${MCPE_WORLDGEN_BUNDLED_DIR}"
     CACHE PATH
-    "Path to the bundled observable world-generation sources"
+    "Path to the observable world-generation sources"
 )
 
 if(NOT EXISTS "${MCPE_WORLDGEN_SOURCE_DIR}/include/mcpe/worldgen/chunk.hpp")
     message(FATAL_ERROR
         "MCPE_WORLDGEN_SOURCE_DIR does not point to the observable "
         "world-generation source tree: ${MCPE_WORLDGEN_SOURCE_DIR}")
+endif()
+
+# An optional upstream checkout can be compared byte-for-byte with the
+# self-contained source snapshot.  This is deliberately opt-in because a
+# clean verifier clone must not require a sibling repository.
+set(MCPE_WORLDGEN_REFERENCE_DIR "" CACHE PATH
+    "Optional PE-BE-Worldgen-Lib checkout used by the snapshot parity target")
+file(STRINGS
+    "${MCPE_WORLDGEN_BUNDLED_DIR}/SNAPSHOT-FILES.txt"
+    _worldgen_snapshot_files)
+if(MCPE_WORLDGEN_REFERENCE_DIR)
+    set(_parity_commands)
+    foreach(_relative_file IN LISTS _worldgen_snapshot_files)
+        list(APPEND _parity_commands
+            COMMAND "${CMAKE_COMMAND}" -E compare_files
+                "${MCPE_WORLDGEN_BUNDLED_DIR}/${_relative_file}"
+                "${MCPE_WORLDGEN_REFERENCE_DIR}/${_relative_file}")
+    endforeach()
+    add_custom_target(mcpe_worldgen_snapshot_parity
+        ${_parity_commands}
+        COMMENT "Checking bundled terrain sources against PE-BE-Worldgen-Lib"
+        VERBATIM)
 endif()
 
 set(_worldgen_src "${MCPE_WORLDGEN_SOURCE_DIR}/src")
